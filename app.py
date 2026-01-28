@@ -1,5 +1,5 @@
 import streamlit as st
-import pipeline_functions as pf
+#import pipeline_functions as pf
 
 st.set_page_config(page_title="Top Apps Pipeline", layout="wide")
 st.title("📊 Top Apps Pipeline (Dynamic Filters)")
