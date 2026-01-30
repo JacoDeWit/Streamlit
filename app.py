@@ -1,11 +1,6 @@
-import subprocess
+import sys
+from streamlit import cli as stcli
 
-#file = "app.py"
-#file = "app_plots.py"
-file = "app_profiler.py"
-#file = "app_profiler_menus.py"
-
-
-subprocess.Popen(
-    ["streamlit", "run", file], shell=True
-)
+if __name__ == '__main__':
+    sys.argv = ["streamlit", "run", file]
+    sys.exit(stcli.main())
