@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import os
-from PIL import image
+from PIL import Image
 
 # Title of the app
 st.title(":blue[Researcher Profile Page]")
