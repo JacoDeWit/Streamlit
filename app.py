@@ -66,7 +66,7 @@ elif menu == ":yellow[Publications]":
         st.write("**Title:**", title[i])
         st.write("**Journal:**", journal[i])
         st.write("**DOI Link:**", doi+link[i])
-        st.page_link(doi+link[i])
+        #st.page_link(doi+link[i])
         st.write("**Authors:**", authors[i])
                
 elif menu == ":orange[Work Data Explorer]":
