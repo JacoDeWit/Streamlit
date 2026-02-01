@@ -111,6 +111,7 @@ elif menu == ":orange[Work Data Explorer]":
         filtered_weather = weather_data[weather_data["Year"].between(year_filter[0], year_filter[1])]
         st.write(f"Filtered Results for Temperature {year_filter}:")
         fig = px.line(filtered_weather, x=filtered_weather.index, y=filtered_weather.Streamflow, title="Streamflow on Vaal River")
+        fig.update_xaxes(title_text='Date', tickvals=filtered_weather.Year, ticktext=filtered_weather.Year)
         st.subheader("Interactive Plotly Chart")
         st.plotly_chart(fig, use_container_width=True)
         #fig.show()
