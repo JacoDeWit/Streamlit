@@ -62,10 +62,11 @@ elif menu == ":yellow[Publications]":
                "Joel Ondego Botai; Christina M. Botai; Jaco P. de Wit; Masinde Muthoni; Abiodun M. Adeola"]
     for i in range(len(title)):
         st.markdown('---')
-        st.write("Title:\t", title[i])
-        st.write("Journal:\t", journal[i])
-        st.write("DOI Link:\t", st.page_link(link[i]))
-        st.write("Authors:\t", authors[i])
+        st.write("**Title:**", title[i])
+        st.write("**Journal:**", journal[i])
+        st.write("**DOI Link:**", link[i])
+        st.page_link(link[i])
+        st.write("**Authors:**", authors[i])
                
 elif menu == ":orange[Work Data Explorer]":
     st.title(":orange[Work Data Explorer]")
