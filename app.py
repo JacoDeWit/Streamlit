@@ -112,7 +112,7 @@ elif menu == ":orange[Work Data Explorer]":
 
     elif data_option == "Weather Station Data":
         st.write("### Weather Station Data")
-        st.dataframe(weather_data)
+        #st.dataframe(weather_data)
         # Add widgets to filter by temperature and humidity
         year_filter = st.slider("Filter by year [from 1914 to 2021", 1914, 2021, (1914, 2021))
         filtered_weather = weather_data[weather_data["Year"].between(year_filter[0], year_filter[1])]
