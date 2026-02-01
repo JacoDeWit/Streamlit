@@ -8,7 +8,6 @@ st.set_page_config(page_title=":blue[Research Profile, Work and Publications Exp
 # Images
 image_background = "https://media.licdn.com/dms/image/v2/D4D16AQH6v8f4cpIOew/profile-displaybackgroundimage-shrink_350_1400/profile-displaybackgroundimage-shrink_350_1400/0/1707996146169?e=1771459200&v=beta&t=QjufdJnCYQL2aYCOWEN1Uq3-78RFHPjgRf2c1gCm-vI"
 image_profile = "https://media.licdn.com/dms/image/v2/D4D03AQFvKPU7S3FegA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1707996011543?e=1771459200&v=beta&t=s5Vyv1rrJsGDzzfvXlhTIynE_G_F_EZGBgmI6etfV7k"
-image_background = "https://media.licdn.com/dms/image/v2/D4D16AQH6v8f4cpIOew/profile-displaybackgroundimage-shrink_350_1400/profile-displaybackgroundimage-shrink_350_1400/0/1707996146169?e=1771459200&v=beta&t=QjufdJnCYQL2aYCOWEN1Uq3-78RFHPjgRf2c1gCm-vI"
 image_radar = "https://weatherblog.co.za/wp-content/uploads/2024/11/randfontein-tornado-south-africa-weather-2024-01-990x546.jpg"
 image_network = "https://www.researchgate.net/profile/Liesl-Dyson-2/publication/323041147/figure/fig1/AS:592132125507584@1518186708264/South-African-Weather-Service-radar-coverage-network-in-2014-Irene-weather-office.png"
 image_largeradar = "https://scontent-jnb2-1.xx.fbcdn.net/v/t39.30808-6/309667974_777404876977322_248156291405082512_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=ZLrOfCPQ8TAQ7kNvwHXxHjO&_nc_oc=Admu_vUVNesCYgPtciXwbGkeOWwIJCipVaTjohvM-KafnbKFjcGcyU_9qS1fGzXE1BY&_nc_zt=23&_nc_ht=scontent-jnb2-1.xx&_nc_gid=ytflBFKIW1KmW7hBNShxWw&oh=00_Afo5rKKykR1wfVFDAjgzXLEEicEicWE3tI1uaQjCug9eSg&oe=69824532"
@@ -100,9 +99,9 @@ elif menu == ":orange[Work Data Explorer]":
 
     elif data_option == "Satellite Observations":
         st.write("### Satellite Observations and Derived Products")
-        st
-        st.markdown("---")
         st.image(image_largeradar, caption="Convective Clouds from Satellite Derived Data.")
+        st.markdown("---")
+        st.image(image_ndwi, caption="Normalized Difference Water Index Calculated from Satellite Data.")
 
     elif data_option == "Weather Station Data":
         st.write("### Weather Station Data")
