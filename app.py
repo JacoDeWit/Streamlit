@@ -49,33 +49,24 @@ if menu == ":green[Researcher Profile]":
 
 elif menu == ":yellow[Publications]":
     st.title(":yellow[Publications]")
-    st.sidebar.header("Upload and Filter")
-
-    # Upload publications file
-    uploaded_file = st.file_uploader("Upload a CSV of Publications", type="csv")
-    if uploaded_file:
-        publications = pd.read_csv(uploaded_file)
-        st.dataframe(publications)
-
-        # Add filtering for year or keyword
-        keyword = st.text_input("Filter by keyword", "")
-        if keyword:
-            filtered = publications[
-                publications.apply(lambda row: keyword.lower() in row.astype(str).str.lower().values, axis=1)
-            ]
-            st.write(f"Filtered Results for '{keyword}':")
-            st.dataframe(filtered)
-        else:
-            st.write("Showing all publications")
-
-        # Publication trends
-        if "Year" in publications.columns:
-            st.subheader("Publication Trends")
-            year_counts = publications["Year"].value_counts().sort_index()
-            st.bar_chart(year_counts)
-        else:
-            st.write("The CSV does not have a 'Year' column to visualize trends.")
-
+    st.markdown("<h1 style='color: #FFFF00'>--------------------------</h1>", unsafe_allow_html=True)
+    st.header("Publications List and Links")
+    orcid = "https://orcid.org/0000-0003-0112-274X"
+    title = ["Evaluation of Rainfall Distribution Based on the Precipitation Concentration Index: A Case Study over the Selected Summer Rainfall Regions of South Africa",
+             "Temporal Variability of Hydroclimatic Extremes: A Case Study of Vhembe, uMgungundlovu, and Lejweleputswa District Municipalities in South Africa",
+             "Analysis of Drought Progression Physiognomies in South Africa"]
+    journal = ["Hydrology", "Water", "Water"]
+    link = ["10.3390/hydrology12060136", "10.3390/w16202924", "10.3390/w11020299"]
+    authors = ["Christina M. Botai; Joel O. Botai; Mxolisi B. Mukhawana; Jaco de Wit; Ndumiso S. Masilela; Nosipho Zwane; Henerica Tazvinga",
+               "Christina M. Botai; Jaco P. de Wit; Joel O. Botai",
+               "Joel Ondego Botai; Christina M. Botai; Jaco P. de Wit; Masinde Muthoni; Abiodun M. Adeola"]
+    for i in len(title):
+        st.markdown('---')
+        st.write("Title:\t", title[i])
+        st.write("Journal:\t", journal[i])
+        st.write("DOI Link:\t", st.page_link(link[i]))
+        st.write("Authors:\t", authors[i])
+               
 elif menu == ":orange[Work Data Explorer]":
     st.title(":orange[Work Data Explorer]")
     st.markdown("<h1 style='color: #FFA500'>--------------------------</h1>", unsafe_allow_html=True)
@@ -107,8 +98,9 @@ elif menu == ":orange[Work Data Explorer]":
 
     elif data_option == "Satellite Observations":
         st.write("### Satellite Observations and Derived Products")
-        
-        st.image(image_largeradar)
+        st
+        st.markdown("---")
+        st.image(image_largeradar, caption="Convective Clouds from Satellite Derived Data.")
 
     elif data_option == "Weather Station Data":
         st.write("### Weather Station Data")
@@ -126,6 +118,7 @@ elif menu == ":orange[Work Data Explorer]":
 elif menu == ":violet[Contact]":
     # Add a contact section
     st.header(":violet[Contact Information]")
+    st.markdown("<h1 style='color: #7F00FF'>--------------------------</h1>", unsafe_allow_html=True)
     email = "jaco.dewit@weathersa.co.za"
     st.write(f"You can reach me at {email}.")
     st.image(image_profile)
