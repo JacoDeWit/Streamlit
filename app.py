@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
+import plotly.express as px
 
 # Set page title
 st.set_page_config(page_title=":blue[Research Profile, Work and Publications Explorer]", layout="wide")
@@ -13,6 +13,7 @@ image_radar = "https://weatherblog.co.za/wp-content/uploads/2024/11/randfontein-
 image_network = "https://www.researchgate.net/profile/Liesl-Dyson-2/publication/323041147/figure/fig1/AS:592132125507584@1518186708264/South-African-Weather-Service-radar-coverage-network-in-2014-Irene-weather-office.png"
 image_largeradar = "https://scontent-jnb2-1.xx.fbcdn.net/v/t39.30808-6/309667974_777404876977322_248156291405082512_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=ZLrOfCPQ8TAQ7kNvwHXxHjO&_nc_oc=Admu_vUVNesCYgPtciXwbGkeOWwIJCipVaTjohvM-KafnbKFjcGcyU_9qS1fGzXE1BY&_nc_zt=23&_nc_ht=scontent-jnb2-1.xx&_nc_gid=ytflBFKIW1KmW7hBNShxWw&oh=00_Afo5rKKykR1wfVFDAjgzXLEEicEicWE3tI1uaQjCug9eSg&oe=69824532"
 image_ndwi = "https://i.ibb.co/675KF0NC/Jan-NDWI-mosaic-final1.jpg"
+image_earth = "https://i.ibb.co/7xJs7GN7/southern-africa-weather-satellite-photos-Infrared-Southern-Africa.jpg"
 
 # Sidebar Menu
 st.sidebar.title(":red[Content]")
@@ -21,28 +22,12 @@ menu = st.sidebar.radio(
     [":green[Researcher Profile]", ":orange[Work Data Explorer]", ":yellow[Publications]", ":violet[Contact]"],
 )
 
-# Dummy STEM data
-physics_data = pd.DataFrame({
-    "Experiment": ["Alpha Decay", "Beta Decay", "Gamma Ray Analysis", "Quark Study", "Higgs Boson"],
-    "Energy (MeV)": [4.2, 1.5, 2.9, 3.4, 7.1],
-    "Date": pd.date_range(start="2024-01-01", periods=5),
-})
-
-astronomy_data = pd.DataFrame({
-    "Celestial Object": ["Mars", "Venus", "Jupiter", "Saturn", "Moon"],
-    "Brightness (Magnitude)": [-2.0, -4.6, -1.8, 0.2, -12.7],
-    "Observation Date": pd.date_range(start="2024-01-01", periods=5),
-})
-
-weather_data = pd.DataFrame({
-    "City": ["Cape Town", "London", "New York", "Tokyo", "Sydney"],
-    "Temperature (°C)": [25, 10, -3, 15, 30],
-    "Humidity (%)": [65, 70, 55, 80, 50],
-    "Recorded Date": pd.date_range(start="2024-01-01", periods=5),
-})
+weather_data = pd.read_csv("D1H003.csv",delimiter=";")
+weather_data = weather_data[['Year', 'Month', 'Day', 'Streamflow']]
+weather_data.dropna(inplace=True)
 
 # Sections based on menu selection
-if menu == "Researcher Profile":
+if menu == ":green[Researcher Profile]":
     st.header("**Researcher Overview**", divider="rainbow")
     st.sidebar.header("Profile Options")
 
@@ -60,9 +45,10 @@ if menu == "Researcher Profile":
     # Background information
     st.header("\nResearch background")
     st.write("Working in the hydro-sphere doing research and developing applications for the water sector. Focussing on Python coding and developing in-house scripts to process, manipulate, analyze and produce products to help managers, forecasts, clients and goverment in decision making.")
+    st.image(image_earth)
 
-elif menu == "Publications":
-    st.title("Publications")
+elif menu == ":yellow[Publications]":
+    st.title(":yellow[Publications]")
     st.sidebar.header("Upload and Filter")
 
     # Upload publications file
@@ -90,55 +76,56 @@ elif menu == "Publications":
         else:
             st.write("The CSV does not have a 'Year' column to visualize trends.")
 
-elif menu == "Work Data Explorer":
-    st.title("Work Data Explorer")
-    st.sidebar.header("Data Selection")
+elif menu == ":orange[Work Data Explorer]":
+    st.title(":orange[Work Data Explorer]")
+    st.markdown("<h1 style='color: #FFA500'>--------------------------</h1>", unsafe_allow_html=True)
+    #st.sidebar.header("Data Selection")
+    st.header("Work Preview Selection")
     
     # Tabbed view for STEM data
-    data_option = st.sidebar.selectbox(
+    #data_option = st.sidebar.selectbox(
+        #"Choose a dataset to explore", 
+        #["Physics Experiments", "Astronomy Observations", "Weather Data"]
+    #)
+    data_option = st.selectbox(
         "Choose a dataset to explore", 
-        ["Physics Experiments", "Astronomy Observations", "Weather Data"]
+        ["Radar Observations", "Satellite Observations", "Weather Station Data"]
     )
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.markdown("---")
 
-    if data_option == "Physics Experiments":
-        st.write("### Physics Experiment Data")
-        st.dataframe(physics_data)
-        # Add widget to filter by Energy levels
-        energy_filter = st.slider("Filter by Energy (MeV)", 0.0, 10.0, (0.0, 10.0))
-        filtered_physics = physics_data[
-            physics_data["Energy (MeV)"].between(energy_filter[0], energy_filter[1])
-        ]
-        st.write(f"Filtered Results for Energy Range {energy_filter}:")
-        st.dataframe(filtered_physics)
+    if data_option == "Radar Observations":
+        st.write("### Radar Meteorological Observation and Products")
+        st.image(image_network, caption="Radar instrument network of South Africa.")
+        st.markdown("---")
+        st.image(image_radar, caption="Radar measured reflectance tracking a tornado in 2024.")
 
-    elif data_option == "Astronomy Observations":
-        st.write("### Astronomy Observation Data")
-        st.dataframe(astronomy_data)
-        # Add widget to filter by Brightness
-        brightness_filter = st.slider("Filter by Brightness (Magnitude)", -15.0, 5.0, (-15.0, 5.0))
-        filtered_astronomy = astronomy_data[
-            astronomy_data["Brightness (Magnitude)"].between(brightness_filter[0], brightness_filter[1])
-        ]
-        st.write(f"Filtered Results for Brightness Range {brightness_filter}:")
-        st.dataframe(filtered_astronomy)
+    elif data_option == "Satellite Observations":
+        st.write("### Satellite Observations and Derived Products")
+        
+        st.image(image_largeradar)
 
-    elif data_option == "Weather Data":
-        st.write("### Weather Data")
+    elif data_option == "Weather Station Data":
+        st.write("### Weather Station Data")
         st.dataframe(weather_data)
         # Add widgets to filter by temperature and humidity
-        temp_filter = st.slider("Filter by Temperature (°C)", -10.0, 40.0, (-10.0, 40.0))
-        humidity_filter = st.slider("Filter by Humidity (%)", 0, 100, (0, 100))
-        filtered_weather = weather_data[
-            weather_data["Temperature (°C)"].between(temp_filter[0], temp_filter[1]) &
-            weather_data["Humidity (%)"].between(humidity_filter[0], humidity_filter[1])
-        ]
-        st.write(f"Filtered Results for Temperature {temp_filter} and Humidity {humidity_filter}:")
-        st.dataframe(filtered_weather)
-        
-        
+        year_filter = st.slider("Filter by year [from 1914 to 2021", 1914, 2021, (1914, 2021))
+        filtered_weather = weather_data[weather_data["Year"].between(year_filter[0], year_filter[1])]
+        st.write(f"Filtered Results for Temperature {year_filter}:")
+        fig = px.line(filtered_weather, x=filtered_weather.Year, y=filtered_weather.Streamflow, title="Streamflow on Vaal River")
+        st.subheader("Interactive Plotly Chart")
+        st.plotly_chart(fig, use_container_width=True)
+        #fig.show()
+        #st.dataframe(filtered_weather)
 
-elif menu == "Contact":
+elif menu == ":violet[Contact]":
     # Add a contact section
-    st.header("Contact Information")
-    email = "jane.doe@example.com"
+    st.header(":violet[Contact Information]")
+    email = "jaco.dewit@weathersa.co.za"
     st.write(f"You can reach me at {email}.")
+    st.image(image_profile)
