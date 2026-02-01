@@ -60,7 +60,7 @@ elif menu == ":yellow[Publications]":
     authors = ["Christina M. Botai; Joel O. Botai; Mxolisi B. Mukhawana; Jaco de Wit; Ndumiso S. Masilela; Nosipho Zwane; Henerica Tazvinga",
                "Christina M. Botai; Jaco P. de Wit; Joel O. Botai",
                "Joel Ondego Botai; Christina M. Botai; Jaco P. de Wit; Masinde Muthoni; Abiodun M. Adeola"]
-    for i in len(title):
+    for i in range(len(title)):
         st.markdown('---')
         st.write("Title:\t", title[i])
         st.write("Journal:\t", journal[i])
